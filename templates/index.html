@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    	<title>Carin Spider</title>
+    	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.3/p5.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Fredericka+the+Great|Rammetto+One" rel="stylesheet">
+    	
+        <script type="text/javascript" charset="utf-8">
+        	var socket = io.connect('https://' + document.domain + ':' + location.port);
+        	socket.on('connect', function() {
+           		console.log("connected")
+        	});
+        	socket.on('mainDivHtml',function(data){
+        		document.getElementById("mainSpace").innerHTML = data;
+        	})
+            socket.on('alreadyConnected',function(data){
+                if(!(data.id==socket.id)){
+                    document.getElementById("mainSpace").innerHTML = data.textHTML;
+                }
+            })
+            socket.on('false',function(data){
+                alert(data)
+            })
+            socket.on('webCamB',function(image){
+                document.body.style="background-image:url('"+image+"'')";
+            })
+            socket.on('robotConnection',function(boolC){
+                if(boolC){
+                    document.getElementById("robotConnection").innerHTML = "Robot is online"
+                }
+                else document.getElementById("robotConnection").innerHTML = "Robot is offline"
+            })
+            function send(){
+                password = document.getElementById('passInput').value;
+                socket.emit('reviewOfPasswrd',password);
+            }
+            function sendMoveOptions(obj){
+                socket.emit('move',obj)
+            }
+            console.log('https://' + document.domain + ':' + location.port)
+    	</script>
+    	<style type="text/css">
+      		
+            @font-face {
+    			font-family: ArTarumianAnpuit;
+    			src: url("ArTarumianBarak-Regular-8925.ttf");
+    			font-weight: bold;
+    		}
+        	
+            @font-face {
+                font-family: MoreThanEnough;
+                src: url("MoreThanEnough.ttf");
+                font-weight: bold;
+            }
+
+            body{
+        		background-image: url("bakcground.jpg");
+        		background-size:110%;
+        		background-repeat: no-repeat;
+        	    background-position: 0% 0%;
+        		overflow:hidden;
+        	}
+            
+            @charset "UTF-8";
+      	
+        </style>
+  	</head>
+  	<body>
+  		<div id="mainSpace">
+    	</div>
+</body>
+</html>

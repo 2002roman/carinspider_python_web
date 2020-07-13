@@ -1,0 +1,61 @@
+<div id="formDiv">
+	<input type="text" class="password" placeholder="Password" id="passInput"/>
+	<br>
+    <input type="submit" value="Enter" id="submit" onclick="send()"/>
+</div>
+<style type="text/css">			
+    #formDiv{
+    	font-family: 'Fredericka the Great', cursive;
+    	position: absolute;
+    	right:0%;
+    	bottom:0%;
+    	width:40%;
+    	height:40%;
+    	margin:10px;
+    	text-align: center;
+    	background:rgba(0,255,255,0.3);
+    	border-radius: 10px;
+    }
+    input{
+		font-family: 'Rammetto One', cursive;
+		margin:10%;
+		outline:none;
+	}
+    input[type=text]{
+    	width:80%;
+    	text-align: center;
+    	height: 80px;
+    	font-size:100%;
+    	border:3px solid transparent;
+    	border-radius: 10px;
+    	background:rgba(255,255,255,0.1);
+    	transition:all 1.5s;
+    }
+    input::placeholder{
+    	color:rgba(0,255,255,0.9);
+    	transition: 1.5s all;
+    }
+    input[type=text]:focus{
+    	border:3px solid rgba(255,255,0,0.9);
+    	border-radius: 10px;
+    	background:rgba(255,255,0,0.2);
+    }
+	input:focus::-webkit-input-placeholder{
+     	color:rgba(255,255,0,0.9);
+    }
+    input[type=submit]{
+    	margin:5%;
+    	width:30%;
+    	height:40px;
+    	border:2px solid rgba(255,255,0,0.5);
+    	color: rgba(255,255,0,0.9);
+    	font-size: 150%;
+    	background:transparent;
+    	transition: 1s all;
+    	border-radius:10px;
+    }
+    input[type=submit]:hover{
+    	color:rgba(0,255,255,1);
+    	background: rgba(255,255,0,0.9);
+    }
+</style>

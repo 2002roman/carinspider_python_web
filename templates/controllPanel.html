@@ -1,0 +1,66 @@
+<div>
+	<script type="text/javascript">
+		var socketEmitObj = {};
+		var breakCall = false;
+		var obj = {}
+		function setup(){
+			createCanvas(200,200)
+		}
+		function draw(){
+			background('#777')
+			circle(100,100,100)
+			fill('#fff')
+			strokeWeight(3)
+			circle(100,100,15)
+			line(0,0,200,200)
+			line(200,0,0,200)
+			if(mouseIsPressed){
+	 			let v0 = createVector(100, 100);
+				let v1 = createVector(100, 0);
+				let v2 = createVector(mouseX - 100, mouseY - 100);
+				let angleBetween = v1.angleBetween(v2);
+				document.getElementById("circleD").style ="top:"+Number(v2.limit(100).y+100)+"px;left:"+Number(v2.limit(100).x+100)+"px;"
+				socketEmitObj = {
+					breakCall,
+					speed:p5.Vector.dist(v0,createVector(mouseX,mouseY)),
+					moveDirection:returnMoveDirection(degrees(angleBetween).toFixed(2))
+				};
+				if(!(mouseX==pmouseX && mouseY==pmouseY)){
+					sendMoveOptions(socketEmitObj)
+				}
+			}else{
+				breakCall = true;
+				document.getElementById("circleD").style ="transition: 1s all;top:100px;left:100px;"
+			}
+		}
+		function returnMoveDirection(angle){
+			if(angle<45) return {moveAngle:Number(angle),direction:'left'}
+			else if(angle<90) return {moveAngle:Number(90-angle),direction:'top'}
+			else if(angle<135) return {moveAngle:Number(angle-90),direction:'top'}
+			else if(angle<180) return {moveAngle:Number(180-angle),direction:'right'}
+			else if(angle<225) return {moveAngle:Number(angle-180),direction:'right'}
+			else if(angle<270) return {moveAngle:Number(270-angle),direction:'bottom'}
+			else if(angle<315) return {moveAngle:Number(angle-270),direction:'bottom'}
+			else if(angle<360) return {moveAngle:Number(360-angle),direction:'left'} 
+		}
+	</script>
+	<style type="text/css">
+	canvas{
+		border-radius: 100%;
+		position: absolute;
+		top:10px;
+		left:10px;
+	}
+	#circleD{
+		width:20px;
+		height:20px;
+		border-radius: 100%;
+		position: absolute;
+		top:100px;
+		left:100px;
+		background:red;
+		z-index:10000;
+	}
+	</style>
+	<div id="circleD"></div>
+</div>

@@ -1,0 +1,50 @@
+<div id="mainDiv">
+	<div id="connectionD">
+		<div id="connectC"></div>
+		<h3>
+			Robot is offline
+		</h3>
+	</div>
+		<br>
+	<h4>
+		Ռոբոտը offline է և դեռ չի միացել ծրագրին։
+	</h4>
+</div>
+<style type="text/css">
+	#connectC{
+	  	width: 35px;
+	  	height: 35px;
+	  	background-color:rgba(255,0,0);
+	  	animation-name: example;
+	  	animation-duration: 2s;
+	  	animation-iteration-count: infinite;
+	  	border-radius:100%;
+	  	font-family: "MoreThanEnough",cursive;
+		margin-left:50px;
+	}
+	#mainDiv{
+		position: absolute;
+		right:0;
+		top:0;
+		margin:100px;
+		text-align: center;
+	}
+	#connectionD{
+		display: flex;
+	}
+	#mainDiv h3{
+		margin-left:30px;
+		margin-top: 0px;
+		font-family: "MoreThanEnough",cursive;
+		font-size:200%;
+	}
+	#mainDiv h4{
+		font-family: "ArTarumianAnpuit",cursive;
+		font-size:200%;
+	}
+	@keyframes example {
+	  	0%{background-opacity:rgba(255,0,0,0);transform:scale(.5)}
+		50% {background:rgba(255,0,0,1);transform:scale(1.1)}
+		100% {background:rgba(255,0,0,0);transform:scale(.5)}
+	}
+</style>
